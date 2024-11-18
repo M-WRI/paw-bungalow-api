@@ -83,3 +83,4 @@ This repository is published under the [MIT](license) license.
 [sanity-shopify]: https://apps.shopify.com/sanity-connect
 [structured-content-patterns]: https://www.sanity.io/guides/structured-content-patterns-for-e-commerce
 [studio-features]: docs/features.md
+# paw-bungalow-api
