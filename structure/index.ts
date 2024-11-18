@@ -1,10 +1,12 @@
-import {ListItemBuilder, StructureResolver} from 'sanity/structure';
+import {ListItemBuilder, StructureResolver} from 'sanity/structure'
 import collections from './collectionStructure'
 import colorThemes from './colorThemeStructure'
 import home from './homeStructure'
 import pages from './pageStructure'
 import products from './productStructure'
 import settings from './settingStructure'
+import blogPost from './blogPostStructure'
+import categoryStructure from './categoryStructure'
 
 /**
  * Structure overrides
@@ -36,6 +38,8 @@ const hiddenDocTypes = (listItem: ListItemBuilder) => {
     'product',
     'productVariant',
     'settings',
+    'blogPost',
+    'category',
   ].includes(id)
 }
 
@@ -52,6 +56,11 @@ export const structure: StructureResolver = (S, context) =>
       colorThemes(S, context),
       S.divider(),
       settings(S, context),
+      S.divider(),
+      S.divider(),
+      blogPost(S, context),
+      categoryStructure(S, context),
+      S.divider(),
       S.divider(),
       ...S.documentTypeListItems().filter(hiddenDocTypes),
     ])

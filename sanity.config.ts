@@ -3,7 +3,7 @@ import {defineConfig, isDev} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {schemaTypes} from './schemaTypes'
 import {structure} from './structure'
-
+import {documentInternationalization} from '@sanity/document-internationalization'
 import {visionTool} from '@sanity/vision'
 import {colorInput} from '@sanity/color-input'
 import {imageHotspotArrayPlugin} from 'sanity-plugin-hotspot-array'
@@ -26,6 +26,14 @@ export default defineConfig({
     imageHotspotArrayPlugin(),
     customDocumentActions(),
     media(),
+    documentInternationalization({
+      supportedLanguages: [
+        {id: 'de', title: 'Deutsch'},
+        {id: 'es', title: 'Español'},
+        {id: 'en', title: 'English'},
+      ],
+      schemaTypes: ['blogPost', 'category'],
+    }),
     ...(isDev ? devOnlyPlugins : []),
   ],
 
