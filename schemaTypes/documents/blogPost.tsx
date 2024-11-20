@@ -41,9 +41,43 @@ export const blogPostType = defineType({
       title: 'Published at',
     }),
     defineField({
+      name: 'previewText',
+      type: 'string',
+      title: 'Preview Text',
+      validation: (Rule) => Rule.max(155).warning('Should not exceed 155 characters'),
+    }),
+    defineField({
       name: 'body',
       type: 'portableText',
       title: 'Body',
     }),
+    defineField({
+      name: 'language',
+      type: 'string',
+      title: 'Language',
+      options: {
+        list: [
+          {title: 'Deutsch', value: 'de'},
+          {title: 'Español', value: 'es'},
+          {title: 'English', value: 'en'},
+        ],
+      },
+      validation: (Rule) => Rule.required(),
+    }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+      language: 'language',
+      media: 'mainImage',
+    },
+    prepare(selection) {
+      const {title, language, media} = selection
+      const flag = language === 'de' ? '🇩🇪' : language === 'es' ? '🇳🇮' : '🇬🇧'
+      return {
+        title: `${title} ${flag}`,
+        media,
+      }
+    },
+  },
 })
